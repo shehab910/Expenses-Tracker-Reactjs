@@ -1,31 +1,37 @@
-import ExpenseItem from './ExpenseItem';
-import Card from '../UI/Card'
-import './Expenses.css';
-import ExpenseFilter from './ExpenseFilter';
-import {useState} from 'react'
+import Card from "../UI/Card";
+import "./Expenses.css";
+import ExpenseFilter from "./ExpenseFilter";
+import { useState } from "react";
+import ExpensesList from "./ExpensesList";
 
 function Expenses(props) {
-  const [filteredYear, setFilteredYear] = useState('2020');
+  const [filteredYear, setFilteredYear] = useState("2020");
+  const filteredExpenses = props.items.filter(
+    (expense) =>
+      filteredYear === new Date(expense.date).getFullYear().toString()
+  );
 
-  const filterChangeHandler = selectedYear => {
+  const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
 
   return (
-    
     <Card className="expenses">
-      <ExpenseFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
-      {
-        props.items.map((expense) => {
-          return(<ExpenseItem date={expense.date} title={expense.title} price={expense.amount} />);
-        })
-      }
-
-      {/* <ExpenseItem date={expenses[0].date} title={expenses[0].title} price={expenses[0].amount} />
-      <ExpenseItem date={expenses[1].date} title={expenses[1].title} price={expenses[1].amount} />
-      <ExpenseItem date={expenses[2].date} title={expenses[2].title} price={expenses[2].amount} />
-      <ExpenseItem date={expenses[3].date} title={expenses[3].title} price={expenses[3].amount} /> */}
-
+      <ExpenseFilter
+        selected={filteredYear}
+        onChangeFilter={filterChangeHandler}
+      />
+      <ExpensesList items={filteredExpenses} />
+      {/* *anotherway* */}
+      {/* {filteredExpenses.length === 0 && <p>No Expenses Found.</p>}
+      {filteredExpenses.length > 0 && filteredExpenses.map((expense) => (
+        <ExpenseItem
+          date={expense.date}
+          title={expense.title}
+          price={expense.amount}
+          key={expense.id}
+        />
+      ))} */}
     </Card>
   );
 }
