@@ -49,7 +49,7 @@ const ExpenseForm = (props) => {
   };
 
   const submitHandler = (event) => {
-    event.preventDefault();
+    event.preventDefault(); //* to stop default behavior (refresh)
 
     const expenseData = {
       title: enteredTitle,

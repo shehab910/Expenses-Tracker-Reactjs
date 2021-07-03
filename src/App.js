@@ -29,10 +29,10 @@ const App = () => {
 
   const addExpenseHandler = (expense) => {
     setExpenses((prevExpenses) => {
-      const temp =[expense, ...prevExpenses];
-      console.log(expense);
-      console.log(prevExpenses);
-      console.log(temp);
+      const temp = [expense, ...prevExpenses];
+      // console.log(expense);
+      // console.log(prevExpenses);
+      // console.log(temp);
       return temp;
     });
   };
