@@ -2,6 +2,7 @@
 
 ## Description
 Simple expenses tracker created using ReactJS.
+Check it out [here](https://expenses-tracker-reac.herokuapp.com/)
 
 ## Features
 - Simple and comforting User Interface
